@@ -1,5 +1,13 @@
 // handles counter functions which relate to localStorage
 
+import { Counter } from "./counter.js";
+
+//created default counter for first time users
+export function makeDefaultCounter() {
+    let defaultCounter = new Counter();
+    saveCurrCounter(defaultCounter);
+}
+
 //get and parse items from localStorage
 export function getStoredCounters() {
     return { 

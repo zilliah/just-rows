@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <h1>Just Count</h1>
+        <h1>Just Rows</h1>
         <h3>A simple persistent row counter that ONLY COUNTS omg</h3>
     </header>
     <main>
@@ -27,14 +27,15 @@
             </div>
             <div class="editor">
                 <form action="">
-                    <input type="text" name="name">
+                    <input type="text" name="name" class="edit">
                     <label for="row-count">Row Count:</label>
                     <!-- add / repLength when it's present? -->
-                    <input type="number" name="row-count">
+                    <input type="number" name="row-count" class="edit">
                     <label for="rep-count">Rep Count:</label>
-                    <input type="number" name="rep-count">
-                    <button class="save">Save</button>
-                    <button class="delete">Delete</button>
+                    <input type="number" name="rep-count" class="edit">
+                    <button class="remove-rep edit">Remove Repeats</button>
+                    <button class="save edit">Save</button>
+                    <button class="delete edit">Delete</button>
                 </form>
             </div>
             <div class="add-counter">
@@ -43,11 +44,12 @@
             <div class="saved-counter-container">
                 <h3>Saved Counters</h3>
                 <ul>
-                    <li>
+                    <!-- <li>
                         <button class="load-counter">Counter 2</button><button class="delete-counter">🗑</button>
-                    </li>
+                    </li> -->
                 </ul>
                 <button id="delete-all">Delete Saved Counters</button>
+                <button id="testing">Test</button>
             </div>
         </div>
 

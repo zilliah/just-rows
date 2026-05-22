@@ -5,7 +5,7 @@ export class Counter {
         this.rowCount = rowCount;
         this.repCount = repCount;
         this.repLength = repLength;
-        this.repStartRow = repStartRow;
+        this.repStartRow = repStartRow; //when repeats don't start at row 1
         this.node = node;
     }
 

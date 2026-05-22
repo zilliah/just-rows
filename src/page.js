@@ -16,22 +16,23 @@ export function updateRowCount(counter) {
 }
 
 //display saved counters in a list
-// with an associated button to open
-// and associated trash can to delete
 export function showSavedCounters(savedArray) {
+    if (savedArray.length < 1) return "No additional saved counters found.";
+    
     const ul = document.querySelector(".saved-counter-container ul");
 
     savedArray.forEach(counter => {
         const btnName = document.createElement("button");
         btnName.textContent = counter.name;
-        btnName.id = counter.id;
+        btnName.classList.add("counter-name-btn");
+        
         const btnDelete = document.createElement("button");
         btnDelete.textContent = "🗑";
-        btnDelete.id = name;
         btnDelete.classList.add("delete");
-
+        
         
         const li = document.createElement("li");
+        li.id = counter.id;
         li.appendChild(btnName);
         li.appendChild(btnDelete);
 
@@ -49,3 +50,13 @@ export function clearSavedCounters() {
     document.querySelector(".saved-counter-container").appendChild(ul);
 }
 
+export function removeOneCounter(id) {
+    const currLi = document.querySelector(`#${id}`);
+    currLi.remove();
+    // TODO add confirmation modal
+}
+
+// confirmation modal for delete
+export function confirm() {
+    console.log("add confirm modal TODO");
+}

@@ -28,7 +28,7 @@ div {
 }
 
 .editor {
-    display: none;
+    /* display: none; */
 }
 
 form > * {
