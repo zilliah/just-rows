@@ -15,53 +15,15 @@
     </header>
     <main>
         <div class="counters-container">
-            <div class="counter">
+            <div class="counter" id="curr-counter">
                 <h3>Counter</h3>
-                <div class="start-edit">🖉</div>
-                <span class="row-count">0</span>
-                <span class="rep-count">0</span>
-                <button class="minus">-</button>
-                <button class="plus">+</button>
-            </div>
-            <div class="editor">
-                <form action="">
-                    <input type="text" name="name">
-                    <label for="row-count">Row Count:</label>
-                    <!-- add / repLength when it's present? -->
-                    <input type="number" name="row-count">
-                    <label for="rep-count">Rep Count:</label>
-                    <input type="number" name="rep-count">
-                    <button class="save">Save</button>
-                    <button class="delete">Delete</button>
-                </form>
-            </div>
-            <div class="counter">
-                <h3>Counter</h3>
-                <div class="start-edit">🖉</div>
-                <span class="row-count">0</span>
-                <span class="rep-count">0</span>
-                <button class="minus">-</button>
-                <button class="plus">+</button>
-            </div>
-            <div class="editor">
-                <form action="">
-                    <input type="text" name="name">
-                    <label for="row-count">Row Count:</label>
-                    <!-- add / repLength when it's present? -->
-                    <input type="number" name="row-count">
-                    <label for="rep-count">Rep Count:</label>
-                    <input type="number" name="rep-count">
-                    <button class="save">Save</button>
-                    <button class="delete">Delete</button>
-                </form>
-            </div>
-            <div class="counter">
-                <h3>Counter</h3>
-                <div class="start-edit">🖉</div>
-                <span class="row-count">0</span>
-                <span class="rep-count">0</span>
-                <button class="minus">-</button>
-                <button class="plus">+</button>
+                <button class="start-edit">🖉</button>
+                <span class="label">Row Count:</span>
+                <span id="row-count">0</span>
+                <span class="label">Rep Count:</span>
+                <span id="rep-count">0</span>
+                <button id="minus">-</button>
+                <button id="plus">+</button>
             </div>
             <div class="editor">
                 <form action="">
@@ -78,11 +40,20 @@
             <div class="add-counter">
                 <button class="add-counter">Add Counter</button>
             </div>
+            <div class="saved-counter-container">
+                <h3>Saved Counters</h3>
+                <ul>
+                    <li>
+                        <button class="load-counter">Counter 2</button><button class="delete-counter">🗑</button>
+                    </li>
+                </ul>
+                <button class="delete-all">Delete Saved Counters</button>
+            </div>
         </div>
 
         <div class="description">
-            <p>This simple row counter will count and THAT'S IT.</p>
-            <p>Your count will be saved as long as you're using the same device and browser.</p>
+            <p>This simple row counter will count and remember and THAT'S IT.</p>
+            <p>Your count will be saved as long as you're using the same device and browser. You can edit the counter to add pattern repeats and a counter name, or to start at a particular row number.</p>
             <p>You can have as many row counters as you like, but I haven't tested more than 5. If things get weird, you can <a href="https://kerrysmart.ca#contact">contact me</a>.</p>
             <p>I am so annoyed at row counters that try to be project trackers and make things way more complicated than they need to be. I just want a simple row counter that doesn't require any set up or installing apps or similar nonsense, so here it is.</p>
         </div>

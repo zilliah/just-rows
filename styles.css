@@ -13,20 +13,22 @@ div {
 }
 
 .counter {
-    width: 10vw;
+    width: 14rem;
     margin: 2rem;
     padding: 1rem;
 
-
-    .start-edit {
-        width: 4.5rem;
-        height: 4.5rem;
-        font-size: 4rem;
-    }
-    
     .rep-count {
         display: none;
     }
+
+    button {
+        display: block;
+    }
+
+}
+
+.editor {
+    display: none;
 }
 
 form > * {

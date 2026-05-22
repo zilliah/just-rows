@@ -1,10 +1,19 @@
 export class Counter {
-    constructor(name, rowCount = 0, repCount = null, repLength = null) {
+    constructor(name = `Counter`, rowCount = 0, repCount = null, repLength = null, repStartRow = 1, node = undefined)  {
         this.name = name;
+        this.id = name.trim().replace(/\s+/g,"-");
         this.rowCount = rowCount;
         this.repCount = repCount;
         this.repLength = repLength;
-        this.lastUsed = Temporal.Now.instant();
+        this.repStartRow = repStartRow;
+        this.node = node;
+    }
+
+    //call this when creating a new counter
+    validateName(savedCountersArr) {
+        if (this.name.length < 1) throw new Error("Counter name cannot be blank.");
+        const existingNames = savedCountersArr.map(c => c.name);
+        if (existingNames.includes(this.name)) throw new Error("Name already exists. Try a different name.");
     }
 
     addRow() {
@@ -14,7 +23,6 @@ export class Counter {
         }
         this.rowCount++;
         console.log("row ct++");
-        this.lastUsed = Temporal.Now.instant();
     }
 
     subtractRow() {
@@ -24,7 +32,6 @@ export class Counter {
             this.rowCount = 1;
         }
         console.log("row ct--");
-        this.lastUsed = Temporal.Now.instant();
     }
 
     //only used when edited by user
