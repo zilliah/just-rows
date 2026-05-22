@@ -1,0 +1,34 @@
+:root {
+    font-size: 62.5%;
+
+}
+
+
+/* TEMPORARY DV'T STYLING, JUST REMOVE ALL OF IT
+ONCE I GET TO THE ACTUAL STYLING PART */
+div {
+    border: 1px pink solid;
+    min-height: 5rem;
+    font-size: 2rem;
+}
+
+.counter {
+    width: 10vw;
+    margin: 2rem;
+    padding: 1rem;
+
+
+    .start-edit {
+        width: 4.5rem;
+        height: 4.5rem;
+        font-size: 4rem;
+    }
+    
+    .rep-count {
+        display: none;
+    }
+}
+
+form > * {
+    display: block;
+}
