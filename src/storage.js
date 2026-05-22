@@ -37,3 +37,7 @@ export function switchCounter(newCounter, oldCounter, savedCountersArray) {
     //add new counter to start of array
     return newSavedCountersArray.unshift(oldCounter);
 }
+
+export function deleteSavedCounters() {
+    localStorage.removeItem("saved-counters");
+}

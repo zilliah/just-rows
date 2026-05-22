@@ -1,4 +1,4 @@
-import { getStoredCounters, saveCountersList, saveCurrCounter, switchCounter } from "./storage.js";
+import { deleteSavedCounters, getStoredCounters, saveCountersList, saveCurrCounter, switchCounter } from "./storage.js";
 import { Counter } from "./counter.js";
 import { showCurrCounter, showSavedCounters, clearSavedCounters } from "./page.js";
 
@@ -26,6 +26,11 @@ let currCounterData = JSON.parse(localStorage.getItem("curr-counter"));
 //if they exist, list with their names and a 🗑 button
 //add event listeners to:
 //delete counter - incl confirmation modal
+const deleteSavedBtn = document.querySelector("#delete-all")
+deleteSavedBtn.addEventListener("click", deleteSavedCounters);
+deleteSavedBtn.addEventListener("click", clearSavedCounters);
+
+
 //open counter: switch into currCounter, push currCounter to start of saved array
 
 

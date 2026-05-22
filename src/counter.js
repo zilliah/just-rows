@@ -1,7 +1,7 @@
 export class Counter {
     constructor(name = `Counter`, rowCount = 0, repCount = null, repLength = null, repStartRow = 1, node = undefined)  {
         this.name = name;
-        this.id = name.trim().replace(/\s+/g,"-");
+        this.id = name.trim().replaceAll(/\s+/g,"-");
         this.rowCount = rowCount;
         this.repCount = repCount;
         this.repLength = repLength;
