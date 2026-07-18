@@ -3,6 +3,10 @@
 
 }
 
+.counters-container {
+    display: flex;
+    justify-content: space-evenly;
+}
 
 /* TEMPORARY DV'T STYLING, JUST REMOVE ALL OF IT
 ONCE I GET TO THE ACTUAL STYLING PART */
@@ -27,8 +31,10 @@ div {
 
 }
 
-.editor {
-    /* display: none; */
+.editor *, .description {
+    display: none;
+    /* tmp: */
+    background-color: rgb(165, 159, 159);
 }
 
 form > * {

@@ -1,16 +1,19 @@
 //  functions that respond directly to user actions / input
 
+import { updateRowCount } from "./page.js";
+import { saveCurrCounter } from "./storage.js";
+
 // ----- within current counter -----
-export function plusRow(currCounter) {
-    currCounter.addRow();
-    
-    
-    //update storage
-    //update display
+export function plusRow(counter) {
+    counter.addRow();
+    updateRowCount(counter);
+    saveCurrCounter(counter);
 }
 
-export function minusRow() {
-    currCounter.subtractRow();
+export function minusRow(counter) {
+    counter.subtractRow();
+    updateRowCount(counter);
+    saveCurrCounter(counter);
 }
 
 export function resetCounter(currCounter) {

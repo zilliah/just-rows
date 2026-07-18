@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Just Count</title>
+    <title>Just Rows</title>
+    <meta name="description" content="A simple persistent row counter">
 
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔢</text></svg>">
@@ -27,12 +28,15 @@
             </div>
             <div class="editor">
                 <form action="">
+                    <label for="name">Name:</label>
                     <input type="text" name="name" class="edit">
                     <label for="row-count">Row Count:</label>
                     <!-- add / repLength when it's present? -->
-                    <input type="number" name="row-count" class="edit">
+                    <input type="number" name="row-count" class="edit" placeholder="0">
+                    <label for="rep-length">Rep Length:</label>
+                    <input type="number" name="rep-length" class="edit" placeholder="0">
                     <label for="rep-count">Rep Count:</label>
-                    <input type="number" name="rep-count" class="edit">
+                    <input type="number" name="rep-count" class="edit" placeholder="0">
                     <button class="remove-rep edit">Remove Repeats</button>
                     <button class="save edit">Save</button>
                     <button class="delete edit">Delete</button>

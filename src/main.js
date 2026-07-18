@@ -1,19 +1,32 @@
-import { deleteSavedCounters, getStoredCounters, saveCountersList, saveCurrCounter, switchCounter } from "./storage.js";
+import { makeDefaultCounter, deleteSavedCounters, getStoredCounters, saveCountersList, saveCurrCounter, switchCounter } from "./storage.js";
 import { Counter } from "./counter.js";
-import { showCurrCounter, showSavedCounters, clearSavedCounters,  } from "./page.js";
+import { showCurrCounter, showSavedCounters, clearSavedCounters  } from "./page.js";
+import { minusRow, plusRow } from "./user-actions.js";
 
 const counterContainer = document.querySelector(".counters-container");
 
-let stored = getStoredCounters();
+let stored = getStoredCounters(); 
+// { currCounter:n, savedCounters:m}
+
 console.log("Retrieved this stored data:");
 console.log(stored);
 
-if (stored.currCounter) {
-    showCurrCounter(stored.currCounter);
-    showSavedCounters(stored.savedCounters);
-} else {
+
+//check for saved counters, create a default counter if not
+if (stored.currCounter) showCurrCounter(stored.currCounter);
+if (stored.savedCounters) showSavedCounters(stored.savedCounters);
+else if (!stored.currCounter) {
     console.log("no saved counters found, starting with default counter");
+    stored.currCounter = makeDefaultCounter();
+    console.log("new counter added:");
+    console.log(stored);
 }
+
+let currCounter = stored.currCounter;
+
+//add listeners for adding and subtracting rows
+document.querySelector("#plus").addEventListener("click", () => plusRow(currCounter));
+document.querySelector("#minus").addEventListener("click", () => minusRow(currCounter));
 
 
 //delete all counters

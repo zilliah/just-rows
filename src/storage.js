@@ -4,17 +4,32 @@ import { Counter } from "./counter.js";
 
 //created default counter for first time users
 export function makeDefaultCounter() {
-    let defaultCounter = new Counter();
+    let defaultCounter = new Counter("Default Counter");
     saveCurrCounter(defaultCounter);
+    return defaultCounter;
 }
 
 //get and parse items from localStorage
 export function getStoredCounters() {
-    return { 
+    const counterObj = { 
         currCounter: JSON.parse(localStorage.getItem("curr-counter")),
         savedCounters: JSON.parse(localStorage.getItem("saved-counters"))
     }
-}
+
+    function convertToCounter(obj) {
+        return new Counter(obj.name, obj.rowCount, obj.repCount, obj.repLength, obj.repStartRow, obj.node);
+    }
+
+    return {
+        currCounter: convertToCounter(counterObj.currCounter),
+        savedCounters: (counterObj.savedCounters).forEach(obj =>
+            convertToCounter(obj)
+        )
+    };
+
+}    
+
+
 
 //save currCounter data to local storage:
 //currCounter saved w/ each +/-, saved edit

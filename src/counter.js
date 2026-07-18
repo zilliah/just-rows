@@ -22,7 +22,7 @@ export class Counter {
             this.rowCount = 0;
         }
         this.rowCount++;
-        console.log("row ct++");
+        console.log("counted 1 more row");
     }
 
     subtractRow() {
