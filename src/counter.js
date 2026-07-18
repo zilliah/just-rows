@@ -6,7 +6,7 @@ export class Counter {
         this.repCount = repCount;
         this.repLength = repLength;
         this.repStartRow = repStartRow; //when repeats don't start at row 1
-        this.node = node;
+        this.node = node; //WHAT WAS THIS FOR?????? oh, the page node, ok
     }
 
     //call this when creating a new counter
@@ -16,22 +16,23 @@ export class Counter {
         if (existingNames.includes(this.name)) throw new Error("Name already exists. Try a different name.");
     }
 
+    //both of these are including 0th rows
+    // hmmm
     addRow() {
         if (this.rowCount + 1 > this.repLength) {
             this.repCount++;
             this.rowCount = 0;
         }
         this.rowCount++;
-        console.log("counted 1 more row");
     }
 
+    // CURR this isn't working right
     subtractRow() {
-        if (this.rowCount > 0) this.rowCount--;
-        else if (this.repCount > 0) {
+        if (this.rowCount > 1) this.rowCount--;
+        else if (this.repCount > 1) {
             this.repCount--;
-            this.rowCount = 1;
+            this.rowCount = this.repLength;
         }
-        console.log("row ct--");
     }
 
     //only used when edited by user

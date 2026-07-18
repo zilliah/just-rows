@@ -20,14 +20,14 @@ export function getStoredCounters() {
         return new Counter(obj.name, obj.rowCount, obj.repCount, obj.repLength, obj.repStartRow, obj.node);
     }
 
+    const convertedSavedCounters = counterObj.savedCounters ? (counterObj.savedCounters).forEach(obj => convertToCounter(obj)) : null;
+
     return {
         currCounter: convertToCounter(counterObj.currCounter),
-        savedCounters: (counterObj.savedCounters).forEach(obj =>
-            convertToCounter(obj)
-        )
+        savedCounters: convertedSavedCounters
     };
 
-}    
+}
 
 
 

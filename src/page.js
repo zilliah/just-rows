@@ -43,8 +43,9 @@ export function showSavedCounters(savedArray) {
 }
 
 //remove saved counters from page
-//eg, 
 export function clearSavedCounters() {
+    //TODO only fire this if there are actually saved counters
+    confirm("This will delete all of your saved counters. Really delete them all?")
     document.querySelector(".saved-counter-container ul").remove();
     const ul = document.createElement("ul");
     document.querySelector(".saved-counter-container").appendChild(ul);
@@ -54,9 +55,4 @@ export function removeOneCounter(id) {
     const currLi = document.querySelector(`#${id}`);
     currLi.remove();
     // TODO add confirmation modal
-}
-
-// confirmation modal for delete
-export function confirm() {
-    console.log("add confirm modal TODO");
 }
