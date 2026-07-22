@@ -6,10 +6,11 @@ export class Counter {
         this.repCount = repCount;
         this.repLength = repLength;
         this.repStartRow = repStartRow; // for when repeats don't start at row 1
-        this.node = node; //WHAT WAS THIS FOR?????? oh, the page node, ok. for saved counters i guess?...maybe revisit this, idk.
+        // this.node = node; //WHAT WAS THIS FOR?????? the page node? for saved counters i guess?...maybe revisit this, idk.
     }
 
-    //call this when creating a new counter
+    // TODO this needs to be part of creating a new counter
+    // but if it's making a default one then auto name it? maybe "counter" + saved array length (or ++ if that already exists)
     validateName(savedCountersArr) {
         if (this.name.length < 1) throw new Error("Counter name cannot be blank.");
         const existingNames = savedCountersArr.map(c => c.name);

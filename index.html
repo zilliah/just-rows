@@ -26,26 +26,38 @@
                 <button id="minus">-</button>
                 <button id="plus">+</button>
             </div>
-            <div class="editor">
-                <form action="">
-                    <label for="name">Name:</label>
-                    <input type="text" name="name" class="edit">
-                    <label for="row-count">Row Count:</label>
-                    <!-- add / repLength when it's present? -->
-                    <input type="number" name="row-count" class="edit" placeholder="0">
-                    <label for="rep-length">Rep Length:</label>
-                    <input type="number" name="rep-length" class="edit" placeholder="0">
-                    <label for="rep-count">Rep Count:</label>
-                    <input type="number" name="rep-count" class="edit" placeholder="0">
-                    <button class="remove-rep edit">Remove Repeats</button>
-                    <button class="save edit">Save</button>
-                    <button class="delete edit">Delete</button>
-                </form>
+            <div>
+                <div id="add-counter">
+                    <button id="quick-add" class="add-counter">Quick New Counter</button>
+                    <button id="full-add" class="add-counter">Create New Counter</button>
+                    <button id="start-edit">🖉 Edit Current Counter</button>
+                </div>
+                <div id="editor" class="hidden">
+                    <form action="">
+                        <button class="save">Save</button>
+
+                        <label for="name-input">Name:</label>
+                        <input type="text" name="name-input" id="name-input">
+    
+                        <label for="row-count-input">Row Count:</label>
+                        <input type="number" name="row-count-input" id="row-count-input" min="1" max="5000" placeholder="1">
+    
+                        <label for="rep-length-input">Repeat Length:</label>
+                        <input type="number" name="rep-length-input" id="rep-length-input" min="2" max="5000" placeholder="0">
+    
+                        <label for="rep-count-input">Repeat Count:</label>
+                        <input type="number" name="rep-count-input" id="rep-count-input" min="1" max="5000" placeholder="1">
+    
+                        <label for="rep-start-row-input">First Row of Repeat:</label>
+                        <input type="number" name="rep-count-input" id="rep-count-input" min="1" max="5000" placeholder="1">
+    
+                        <button id="remove-rep-input">Remove Repeats</button>
+                        <button class="save">Save</button>
+                        <button id="delete-curr">Delete</button>
+                    </form>
+                </div>
             </div>
-            <div class="add-counter">
-                <button id="start-edit">🖉 Edit Counter</button>
-                <button id="add-counter">Create New Counter</button>
-            </div>
+
             <div class="saved-counter-container">
                 <h3>Saved Counters</h3>
                 <ul>

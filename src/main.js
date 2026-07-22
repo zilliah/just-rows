@@ -1,6 +1,6 @@
 import { clearSavedCounters, showCurrCounter, showSavedCounters } from "./page.js";
 import { deleteSavedCounters, getStoredCounters } from "./storage.js";
-import { minusRow, plusRow, resetCounter } from "./user-actions.js";
+import { minusRow, plusRow, resetCounter, openEditor, closeEditor } from "./user-actions.js";
 
 const counterContainer = document.querySelector(".counters-container");
 
@@ -38,6 +38,30 @@ deleteSavedBtn.addEventListener("click", clearSavedCounters);
 //open counter: switch into currCounter, push currCounter to start of saved array
 
 //saved counter delete buttons
+
+
+// ----------- Editor ------------------
+const editorNode = document.querySelector("#editor");
+const editBtnsNode = document.querySelector("#add-counter");
+
+//open the editor for both edit and create new (nothing else changes until saved)
+document.querySelector("#quick-add").addEventListener("click", e => {
+    //TODO - mostly in user-actions
+    // create new default, becomes curr
+    // prev curr gets pushed to saved array
+    //update on page
+});
+
+//these can leave as is, nothing else happens with these until saved
+document.querySelector("#full-add").addEventListener("click", e => openEditor(editorNode, editBtnsNode));
+document.querySelector("#start-edit").addEventListener("click", e => openEditor(editorNode, editBtnsNode));
+
+// save stuff from input (this will be a lot more, but will probs have wrapper fxns in user-actions, etc)
+document.querySelectorAll(".save").forEach(n => {
+    n.addEventListener("click", e => {
+        closeEditor(editorNode, editBtnsNode);
+    });
+});
 
 
 // TMP TESTING

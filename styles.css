@@ -24,9 +24,6 @@ div {
     margin: 2rem;
     padding: 1rem;
 
-    .rep-count {
-        /* display: none; */
-    }
 
     button {
         display: block;
@@ -34,7 +31,7 @@ div {
 
 }
 
-.editor *, .description {
+.description {
     display: none;
     /* tmp: */
     background-color: rgb(165, 159, 159);
@@ -42,6 +39,8 @@ div {
 
 form > * {
     display: block;
+    margin-top: 1rem;
+
 }
 
 span {

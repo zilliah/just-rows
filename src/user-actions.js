@@ -27,19 +27,15 @@ function updateAndSave (counter) {
 }
 
 // ----- editing panel -----
-export function editCurrCounter() {
-    //just opens the edit form
 
-    //display edit dialogue, hide current counter -> page.js
-    
+export function openEditor(editorNode, btnsNode) {
+    editorNode.classList.remove("hidden");
+    btnsNode.classList.add("hidden");
 }
-
-export function saveCounterEdits() {
-    //save input to storage -> storage.js
-    //display updated counter on page -> page.js
-
+export function closeEditor(editorNode, btnsNode) {
+    editorNode.classList.add("hidden");
+    btnsNode.classList.remove("hidden");
 }
-
 
 
 export function removeRepeats(currCounter) {

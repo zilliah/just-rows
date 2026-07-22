@@ -57,3 +57,4 @@ export function removeOneCounter(id) {
     currLi.remove();
     // TODO add confirmation modal
 }
+
