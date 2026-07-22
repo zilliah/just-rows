@@ -1,6 +1,5 @@
-import { makeDefaultCounter, deleteSavedCounters, getStoredCounters, saveCountersList, saveCurrCounter, switchCounter } from "./storage.js";
-import { Counter } from "./counter.js";
-import { showCurrCounter, showSavedCounters, clearSavedCounters  } from "./page.js";
+import { clearSavedCounters, showCurrCounter, showSavedCounters } from "./page.js";
+import { deleteSavedCounters, getStoredCounters } from "./storage.js";
 import { minusRow, plusRow, resetCounter } from "./user-actions.js";
 
 const counterContainer = document.querySelector(".counters-container");
@@ -12,24 +11,10 @@ let stored = getStoredCounters();
 console.log("Retrieved this stored data:");
 console.log(stored);
 
-// CURR:
-//check for saved counters, create a default counter if not
-//do this in the getStoredCounters instead
-// if (stored.currCounter) showCurrCounter(stored.currCounter);
-// if (stored.savedCounters) showSavedCounters(stored.savedCounters);
-// else if (!stored.currCounter) {
-//     console.log("no saved counters found, starting with default counter");
-//     stored.currCounter = makeDefaultCounter();
-//     console.log("new counter added:");
-//     console.log(stored);
-// }
-
 
 // UPDATE DISPLAY with saved data
 showCurrCounter(stored.currCounter);
 showSavedCounters(stored.savedCounters);
-
-// only display rep count for counters with a repeat
 if (stored.currCounter.repLength) {
     document.querySelectorAll(".rep-count").forEach(n => n.classList.remove("hidden"))};
 

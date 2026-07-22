@@ -15,17 +15,15 @@ export function makeDefaultCounter() {
 //update if present
 //create default if not
 export function getStoredCounters() {
-    //check for stored, create default if not
-
-    const counterObj = { 
-        currCounter: JSON.parse(localStorage.getItem("curr-counter")),
-        savedCounters: JSON.parse(localStorage.getItem("saved-counters"))
-    }
-
     function convertToCounter(obj) {
         // console.log("Creating a new counter from:");
         // console.log(obj);
         return new Counter(obj.name, obj.rowCount, obj.repCount, obj.repLength, obj.repStartRow, obj.node);
+    }
+
+    const counterObj = { 
+        currCounter: JSON.parse(localStorage.getItem("curr-counter")),
+        savedCounters: JSON.parse(localStorage.getItem("saved-counters"))
     }
 
     const currSavedCounter = counterObj.currCounter ? convertToCounter(counterObj.currCounter) : makeDefaultCounter();
