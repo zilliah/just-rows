@@ -17,12 +17,12 @@
     <main>
         <div class="counters-container">
             <div class="counter" id="curr-counter">
-                <h3>Counter</h3>
-                <button class="start-edit">🖉</button>
-                <span class="label">Row Count:</span>
-                <span id="row-count">0</span>
-                <span class="label">Rep Count:</span>
-                <span id="rep-count">0</span>
+                <h3 id="curr-name">Default Counter</h3> 
+                <button id="reset">↺</button>
+                <span class="label row-count">Row Count:</span>
+                <span id="row-count" class="row-count"></span>
+                <span class="label rep-count hidden">Rep Count:</span>
+                <span id="rep-count" class="rep-count hidden"></span>
                 <button id="minus">-</button>
                 <button id="plus">+</button>
             </div>
@@ -43,17 +43,15 @@
                 </form>
             </div>
             <div class="add-counter">
-                <button class="add-counter">Add Counter</button>
+                <button id="start-edit">🖉 Edit Counter</button>
+                <button id="add-counter">Create New Counter</button>
             </div>
             <div class="saved-counter-container">
                 <h3>Saved Counters</h3>
                 <ul>
-                    <!-- <li>
-                        <button class="load-counter">Counter 2</button><button class="delete-counter">🗑</button>
-                    </li> -->
                 </ul>
-                <button id="delete-all">Delete Saved Counters</button>
-                <button id="testing">Test</button>
+                <button id="delete-all">Delete All Saved Counters</button>
+                <!-- <button id="testing">Test</button> -->
             </div>
         </div>
 

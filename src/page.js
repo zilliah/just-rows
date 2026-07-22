@@ -7,6 +7,7 @@ export function showCurrCounter(counter) {
     updateRowCount(counter);
 }
 
+//TODO only show rep count if the counter uses repeats (default does not)
 //update row/rep numbers shown to user
 export function updateRowCount(counter) {
     const rowCount = document.querySelector("#row-count");
@@ -17,7 +18,7 @@ export function updateRowCount(counter) {
 
 //display saved counters in a list
 export function showSavedCounters(savedArray) {
-    if (savedArray.length < 1) return "No additional saved counters found.";
+    if (!savedArray || savedArray.length < 1) return "No saved counters found.";
     
     const ul = document.querySelector(".saved-counter-container ul");
 

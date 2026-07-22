@@ -1,12 +1,12 @@
 export class Counter {
-    constructor(name = `Counter`, rowCount = 0, repCount = null, repLength = null, repStartRow = 1, node = undefined)  {
+    constructor(name = `Counter`, rowCount = 1, repCount = 1, repLength = null, repStartRow = 1, node = undefined)  {
         this.name = name;
         this.id = name.trim().replaceAll(/\s+/g,"-");
         this.rowCount = rowCount;
         this.repCount = repCount;
         this.repLength = repLength;
-        this.repStartRow = repStartRow; //when repeats don't start at row 1
-        this.node = node; //WHAT WAS THIS FOR?????? oh, the page node, ok
+        this.repStartRow = repStartRow; // for when repeats don't start at row 1
+        this.node = node; //WHAT WAS THIS FOR?????? oh, the page node, ok. for saved counters i guess?...maybe revisit this, idk.
     }
 
     //call this when creating a new counter
@@ -19,7 +19,7 @@ export class Counter {
     //both of these are including 0th rows
     // hmmm
     addRow() {
-        if (this.rowCount + 1 > this.repLength) {
+        if (this.repLength && this.rowCount + 1 > this.repLength) {
             this.repCount++;
             this.rowCount = 0;
         }
@@ -29,7 +29,7 @@ export class Counter {
     // CURR this isn't working right
     subtractRow() {
         if (this.rowCount > 1) this.rowCount--;
-        else if (this.repCount > 1) {
+        else if (this.repLength && this.repCount > 1) {
             this.repCount--;
             this.rowCount = this.repLength;
         }

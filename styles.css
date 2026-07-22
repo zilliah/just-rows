@@ -1,11 +1,14 @@
 :root {
     font-size: 62.5%;
-
 }
 
 .counters-container {
     display: flex;
     justify-content: space-evenly;
+}
+
+.hidden {
+    display: none;
 }
 
 /* TEMPORARY DV'T STYLING, JUST REMOVE ALL OF IT
@@ -17,12 +20,12 @@ div {
 }
 
 .counter {
-    width: 14rem;
+    width: 20rem;
     margin: 2rem;
     padding: 1rem;
 
     .rep-count {
-        display: none;
+        /* display: none; */
     }
 
     button {
@@ -38,5 +41,9 @@ div {
 }
 
 form > * {
+    display: block;
+}
+
+span {
     display: block;
 }

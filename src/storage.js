@@ -4,29 +4,37 @@ import { Counter } from "./counter.js";
 
 //created default counter for first time users
 export function makeDefaultCounter() {
+    //creates counter w/ no reps
     let defaultCounter = new Counter("Default Counter");
     saveCurrCounter(defaultCounter);
     return defaultCounter;
 }
 
 //get and parse items from localStorage
+//CURR check for existing counters
+//update if present
+//create default if not
 export function getStoredCounters() {
+    //check for stored, create default if not
+
     const counterObj = { 
         currCounter: JSON.parse(localStorage.getItem("curr-counter")),
         savedCounters: JSON.parse(localStorage.getItem("saved-counters"))
     }
 
     function convertToCounter(obj) {
+        // console.log("Creating a new counter from:");
+        // console.log(obj);
         return new Counter(obj.name, obj.rowCount, obj.repCount, obj.repLength, obj.repStartRow, obj.node);
     }
 
+    const currSavedCounter = counterObj.currCounter ? convertToCounter(counterObj.currCounter) : makeDefaultCounter();
     const convertedSavedCounters = counterObj.savedCounters ? (counterObj.savedCounters).forEach(obj => convertToCounter(obj)) : null;
 
     return {
-        currCounter: convertToCounter(counterObj.currCounter),
+        currCounter: currSavedCounter,
         savedCounters: convertedSavedCounters
     };
-
 }
 
 

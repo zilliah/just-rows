@@ -1,32 +1,46 @@
 import { makeDefaultCounter, deleteSavedCounters, getStoredCounters, saveCountersList, saveCurrCounter, switchCounter } from "./storage.js";
 import { Counter } from "./counter.js";
 import { showCurrCounter, showSavedCounters, clearSavedCounters  } from "./page.js";
-import { minusRow, plusRow } from "./user-actions.js";
+import { minusRow, plusRow, resetCounter } from "./user-actions.js";
 
 const counterContainer = document.querySelector(".counters-container");
 
 let stored = getStoredCounters(); 
 // { currCounter:n, savedCounters:m}
 
+
 console.log("Retrieved this stored data:");
 console.log(stored);
 
-
+// CURR:
 //check for saved counters, create a default counter if not
-if (stored.currCounter) showCurrCounter(stored.currCounter);
-if (stored.savedCounters) showSavedCounters(stored.savedCounters);
-else if (!stored.currCounter) {
-    console.log("no saved counters found, starting with default counter");
-    stored.currCounter = makeDefaultCounter();
-    console.log("new counter added:");
-    console.log(stored);
-}
+//do this in the getStoredCounters instead
+// if (stored.currCounter) showCurrCounter(stored.currCounter);
+// if (stored.savedCounters) showSavedCounters(stored.savedCounters);
+// else if (!stored.currCounter) {
+//     console.log("no saved counters found, starting with default counter");
+//     stored.currCounter = makeDefaultCounter();
+//     console.log("new counter added:");
+//     console.log(stored);
+// }
 
-let currCounter = stored.currCounter;
+
+// UPDATE DISPLAY with saved data
+showCurrCounter(stored.currCounter);
+showSavedCounters(stored.savedCounters);
+
+// only display rep count for counters with a repeat
+if (stored.currCounter.repLength) {
+    document.querySelectorAll(".rep-count").forEach(n => n.classList.remove("hidden"))};
+
 
 //add listeners for adding and subtracting rows
-document.querySelector("#plus").addEventListener("click", () => plusRow(currCounter));
-document.querySelector("#minus").addEventListener("click", () => minusRow(currCounter));
+document.querySelector("#plus").addEventListener("click", () => plusRow(stored.currCounter));
+document.querySelector("#minus").addEventListener("click", () => minusRow(stored.currCounter));
+
+//reset and edit buttons listeners
+document.querySelector("#reset").addEventListener("click", () => resetCounter(stored.currCounter));
+document.querySelector("#start-edit").addEventListener("click", () => console.log("starting edit"));
 
 
 //delete all counters
@@ -38,7 +52,7 @@ deleteSavedBtn.addEventListener("click", clearSavedCounters);
 
 //open counter: switch into currCounter, push currCounter to start of saved array
 
-//delete saved counter buttons
+//saved counter delete buttons
 
 
 // TMP TESTING

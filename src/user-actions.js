@@ -1,4 +1,5 @@
 //  functions that respond directly to user actions / input
+// mostly wrapper functions to streamline page and storage updates
 
 import { updateRowCount } from "./page.js";
 import { saveCurrCounter } from "./storage.js";
@@ -6,20 +7,23 @@ import { saveCurrCounter } from "./storage.js";
 // ----- within current counter -----
 export function plusRow(counter) {
     counter.addRow();
-    updateRowCount(counter);
-    saveCurrCounter(counter);
+    updateAndSave(counter);
 }
 
 export function minusRow(counter) {
     counter.subtractRow();
-    updateRowCount(counter);
-    saveCurrCounter(counter);
+    updateAndSave(counter);
 }
 
-export function resetCounter(currCounter) {
-    currCounter.rowCount = 0;
-    if (currCounter.repCount) currCounter.repCount = 0;
+export function resetCounter(counter) {
+    counter.rowCount = 1;
+    if (counter.repCount) counter.repCount = 1;
+    updateAndSave(counter);
+}
 
+function updateAndSave (counter) {
+    updateRowCount(counter);
+    saveCurrCounter(counter);
 }
 
 // ----- editing panel -----
