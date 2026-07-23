@@ -45,11 +45,14 @@ export function showSavedCounters(savedArray) {
 
 //remove saved counters from page
 export function clearSavedCounters() {
-    //TODO only fire this if there are actually saved counters
-    confirm("This will delete all of your saved counters. Really delete them all?")
-    document.querySelector(".saved-counter-container ul").remove();
-    const ul = document.createElement("ul");
-    document.querySelector(".saved-counter-container").appendChild(ul);
+    if (localStorage.getItem("savedCounters")) {
+        confirm("Delete all saved counters? This cannot be undone.");
+        document.querySelector(".saved-counter-container ul").remove();
+        const ul = document.createElement("ul");
+        document.querySelector(".saved-counter-container").appendChild(ul);
+    } else {
+        alert("No saved counters to delete.");
+    }
 }
 
 export function removeOneCounter(id) {

@@ -1,8 +1,8 @@
 //  functions that respond directly to user actions / input
 // mostly wrapper functions to streamline page and storage updates
 
-import { updateRowCount } from "./page.js";
-import { saveCurrCounter } from "./storage.js";
+import { clearSavedCounters, updateRowCount } from "./page.js";
+import { deleteSavedCounters, saveCurrCounter } from "./storage.js";
 
 // ----- within current counter -----
 export function plusRow(counter) {
@@ -79,7 +79,9 @@ export function deleteOneSavedCounter(counter) {
     //update list of saved counters on page
 }
 
-export function deleteAllSavedCounters(counter) {
+export function deleteAllSavedCounters() {
     //deleteSavedCounters -> storage.js
     //clearSavedCounters -> page.js
+    deleteSavedCounters();
+    clearSavedCounters();
 }
