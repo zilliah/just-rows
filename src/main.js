@@ -21,7 +21,7 @@ document.querySelector("#plus").addEventListener("click", plusRow);
 document.querySelector("#minus").addEventListener("click", minusRow);
 
 //reset button
-document.querySelector("#reset").addEventListener("click", () => resetCounter(stored.currCounter));
+document.querySelector("#reset").addEventListener("click", resetCounter);
 
 
 //delete all counters

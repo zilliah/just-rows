@@ -20,15 +20,16 @@ export function minusRow() {
     updateAndSave(counter);
 }
 
-export function resetCounter(counter) {
+export function resetCounter() {
+    let counter = getStoredCounters().currCounter;
     counter.rowCount = 1;
     if (counter.repCount) counter.repCount = 1;
     updateAndSave(counter);
 }
 
 function updateAndSave (counter) {
-    updateRowCount();
     saveCurrCounter(counter);
+    updateRowCount();
 }
 
 // ----- editing panel -----
