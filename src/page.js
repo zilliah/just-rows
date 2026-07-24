@@ -1,20 +1,24 @@
 // functions related to visible page updates
 
-export function showAllCounters(counterObj) {
-    showCurrCounter(counterObj.currCounter);
-    showSavedCounters(counterObj.savedCounters);
+import { getStoredCounters } from "/src/storage.js";
+
+export function showAllCounters() {
+    showCurrCounter();
+    showSavedCounters();
 }
 
 //display current counter to user
-export function showCurrCounter(counter) {
+export function showCurrCounter() {
+    const counter = getStoredCounters().currCounter;
     const h3 = document.querySelector("#curr-counter h3");
     h3.textContent = counter.name;
-    updateRowCount(counter);
+    updateRowCount();
 }
 
 //TODO only show rep count if the counter uses repeats (default does not)
 //update row/rep numbers shown to user
-export function updateRowCount(counter) {
+export function updateRowCount() {
+    const counter = getStoredCounters().currCounter;
     const rowCount = document.querySelector("#row-count");
     const repCount = document.querySelector("#rep-count");
     rowCount.textContent = counter.rowCount;
@@ -22,7 +26,9 @@ export function updateRowCount(counter) {
 }
 
 //display saved counters in a list
-export function showSavedCounters(savedArray) {
+export function showSavedCounters() {
+    const savedArray = getStoredCounters().savedCounters;
+
     if (!savedArray || savedArray.length < 1) return "No saved counters found.";
     
     clearSavedCounters();

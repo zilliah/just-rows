@@ -3,7 +3,7 @@
 
 import { Counter } from "./counter.js";
 import { clearSavedCounters, showAllCounters, updateRowCount } from "./page.js";
-import { deleteSavedCounters, getStoredCounters, saveCurrCounter, saveNewCurr } from "./storage.js";
+import { deleteSavedCounters, getStoredCounters, makeDefaultCounter, saveAllCounters, saveCurrCounter, saveNewCurr } from "./storage.js";
 
 // ----- within current counter -----
 // don't need input -> always retrieve and use most recent storage value
@@ -27,17 +27,29 @@ export function resetCounter(counter) {
 }
 
 function updateAndSave (counter) {
-    updateRowCount(counter);
+    updateRowCount();
     saveCurrCounter(counter);
 }
 
 // ----- editing panel -----
 
-export function openEditor(editorNode, btnsNode) {
+export function openEditor(mode) {
+    const editorNode = document.querySelector("#editor");
+    const btnsNode = document.querySelector("#add-counter");
     editorNode.classList.remove("hidden");
     btnsNode.classList.add("hidden");
+
+    //mode can be "edit" or "create"
+    //different things will happen depending
+    if (mode === "edit") {
+
+    } else if (mode === "create") {
+
+    } else throw new Error("Incorrect mode to open the editor");
 }
-export function closeEditor(editorNode, btnsNode) {
+export function closeEditor() {
+    const editorNode = document.querySelector("#editor");
+    const btnsNode = document.querySelector("#add-counter");
     editorNode.classList.add("hidden");
     btnsNode.classList.remove("hidden");
 }
@@ -49,7 +61,23 @@ export function removeRepeats(currCounter) {
     currCounter.repStartRow = 1;
 
     //update page
+    //TODO
 }
+
+
+export function deleteCurrCounter() {
+    let stored = getStoredCounters();
+    if (stored.savedCounters) {
+        let newCurr = stored.savedCounters.shift();
+        saveAllCounters(newCurr, stored.savedCounters);
+        //shift off the first one, save updated both
+    } else saveCurrCounter(makeDefaultCounter());
+
+    
+    closeEditor();
+    showAllCounters();
+}
+
 
 // ----- adding/removing counters -----
 const maxCounters = 500;
@@ -65,15 +93,11 @@ export function addQuickCounter() {
     let name = stored.savedCounters ? `Counter ${stored.savedCounters.length + 2}` : "Counter 2";
     const newCurr = new Counter(name);  //TODO validate unique name
     saveNewCurr(newCurr);
-
-    //update on page
-    showAllCounters(getStoredCounters());
+    showAllCounters();
 }
 
 export function addCounter() {
     //show edit dialogue (leave currentCounter) -> page.js
-
-    //do i want to just enter name and need to click again for editing other input?
 
     //need to handle action buttons differently for this one
 }
@@ -107,6 +131,4 @@ export function deleteAllSavedCounters() {
         deleteSavedCounters();
         clearSavedCounters();
     } else alert("No saved counters to delete.");
-
-
 }

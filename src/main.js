@@ -1,6 +1,6 @@
 import { showCurrCounter, showSavedCounters } from "./page.js";
 import { getStoredCounters } from "./storage.js";
-import { addQuickCounter, closeEditor, deleteAllSavedCounters, minusRow, openEditor, plusRow, resetCounter } from "./user-actions.js";
+import { addQuickCounter, closeEditor, deleteAllSavedCounters, deleteCurrCounter, minusRow, openEditor, plusRow, resetCounter } from "./user-actions.js";
 
 const counterContainer = document.querySelector(".counters-container");
 
@@ -10,8 +10,8 @@ let stored = getStoredCounters();
 // initial screen update with saved data
 console.log("Retrieved this stored data:");
 console.log(stored);
-showCurrCounter(stored.currCounter);
-showSavedCounters(stored.savedCounters);
+showCurrCounter();
+showSavedCounters();
 if (stored.currCounter.repLength) {
     document.querySelectorAll(".rep-count").forEach(n => n.classList.remove("hidden"))};
 
@@ -33,23 +33,30 @@ deleteSavedBtn.addEventListener("click", deleteAllSavedCounters);
 
 
 // ----------- Editor ------------------
-const editorNode = document.querySelector("#editor");
-const editBtnsNode = document.querySelector("#add-counter");
-
-//open the editor for both edit and create new (nothing else changes until saved)
+// add default counter
 document.querySelector("#quick-add").addEventListener("click", addQuickCounter);
 
+// open editor
+document.querySelector("#full-add").addEventListener("click", e => openEditor("create"));
+document.querySelector("#start-edit").addEventListener("click", e => openEditor("edit"));
 
-//these can leave as is, nothing else happens with these until saved
-document.querySelector("#full-add").addEventListener("click", e => openEditor(editorNode, editBtnsNode));
-document.querySelector("#start-edit").addEventListener("click", e => openEditor(editorNode, editBtnsNode));
+// close editor
+document.querySelector("#delete-curr").addEventListener("click", e => {
+    e.preventDefault();
+    deleteCurrCounter();
+});
+document.querySelector("#cancel-edit").addEventListener("click", e => {
+    e.preventDefault();
+    closeEditor();
+});
 
 // save input
 // (this will be a lot more, but will probs have wrapper fxns in user-actions, etc)
-//will need to do different things depending on if it's
-document.querySelectorAll(".save").forEach(n => {
+//different actions for edit vs create, think about how to handle this
+document.querySelectorAll(".save-edit").forEach(n => {
     n.addEventListener("click", e => {
-        closeEditor(editorNode, editBtnsNode);
+        e.preventDefault();
+        closeEditor();
         console.log("counter saved");
     });
 });

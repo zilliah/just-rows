@@ -46,3 +46,8 @@ form > * {
 span {
     display: block;
 }
+
+#add-counter button {
+    display: block;
+    margin: 2rem;
+}
