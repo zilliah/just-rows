@@ -17,8 +17,8 @@ if (stored.currCounter.repLength) {
 
 
 //adding and subtracting buttons
-document.querySelector("#plus").addEventListener("click", () => plusRow(stored.currCounter));
-document.querySelector("#minus").addEventListener("click", () => minusRow(stored.currCounter));
+document.querySelector("#plus").addEventListener("click", plusRow);
+document.querySelector("#minus").addEventListener("click", minusRow);
 
 //reset button
 document.querySelector("#reset").addEventListener("click", () => resetCounter(stored.currCounter));

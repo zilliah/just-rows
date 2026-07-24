@@ -6,12 +6,16 @@ import { clearSavedCounters, showAllCounters, updateRowCount } from "./page.js";
 import { deleteSavedCounters, getStoredCounters, saveCurrCounter, saveNewCurr } from "./storage.js";
 
 // ----- within current counter -----
-export function plusRow(counter) {
+// don't need input -> always retrieve and use most recent storage value
+// otherwise it does weird counting errors
+export function plusRow() {
+    let counter = getStoredCounters().currCounter;
     counter.addRow();
     updateAndSave(counter);
 }
 
-export function minusRow(counter) {
+export function minusRow() {
+    let counter = getStoredCounters().currCounter;
     counter.subtractRow();
     updateAndSave(counter);
 }

@@ -53,7 +53,6 @@ export function showSavedCounters(savedArray) {
 export function clearSavedCounters() {
     document.querySelector(".saved-counter-container ol").remove();
     const ol = document.createElement("ol");
-    ol.reversed = "true";
     document.querySelector(".saved-counter-container").appendChild(ol);
 }
 
