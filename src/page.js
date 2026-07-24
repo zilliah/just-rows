@@ -1,5 +1,10 @@
 // functions related to visible page updates
 
+export function showAllCounters(counterObj) {
+    showCurrCounter(counterObj.currCounter);
+    showSavedCounters(counterObj.savedCounters);
+}
+
 //display current counter to user
 export function showCurrCounter(counter) {
     const h3 = document.querySelector("#curr-counter h3");
@@ -20,7 +25,8 @@ export function updateRowCount(counter) {
 export function showSavedCounters(savedArray) {
     if (!savedArray || savedArray.length < 1) return "No saved counters found.";
     
-    const ul = document.querySelector(".saved-counter-container ul");
+    clearSavedCounters();
+    const ol = document.querySelector(".saved-counter-container ol");
 
     savedArray.forEach(counter => {
         const btnName = document.createElement("button");
@@ -37,7 +43,7 @@ export function showSavedCounters(savedArray) {
         li.appendChild(btnName);
         li.appendChild(btnDelete);
 
-        ul.appendChild(li);
+        ol.appendChild(li);
 
     });
 
@@ -45,14 +51,10 @@ export function showSavedCounters(savedArray) {
 
 //remove saved counters from page
 export function clearSavedCounters() {
-    if (localStorage.getItem("savedCounters")) {
-        confirm("Delete all saved counters? This cannot be undone.");
-        document.querySelector(".saved-counter-container ul").remove();
-        const ul = document.createElement("ul");
-        document.querySelector(".saved-counter-container").appendChild(ul);
-    } else {
-        alert("No saved counters to delete.");
-    }
+    document.querySelector(".saved-counter-container ol").remove();
+    const ol = document.createElement("ol");
+    ol.reversed = "true";
+    document.querySelector(".saved-counter-container").appendChild(ol);
 }
 
 export function removeOneCounter(id) {

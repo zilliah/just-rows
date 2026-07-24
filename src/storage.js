@@ -10,10 +10,7 @@ export function makeDefaultCounter() {
     return defaultCounter;
 }
 
-//get and parse items from localStorage
-//CURR check for existing counters
-//update if present
-//create default if not
+//get, parse, format items from localStorage
 export function getStoredCounters() {
     function convertToCounter(obj) {
         // console.log("Creating a new counter from:");
@@ -27,8 +24,8 @@ export function getStoredCounters() {
     }
 
     const currSavedCounter = counterObj.currCounter ? convertToCounter(counterObj.currCounter) : makeDefaultCounter();
-    const convertedSavedCounters = counterObj.savedCounters ? (counterObj.savedCounters).forEach(obj => convertToCounter(obj)) : null;
-
+    const convertedSavedCounters = counterObj.savedCounters ? (counterObj.savedCounters).map(obj => convertToCounter(obj)) : null;
+    
     return {
         currCounter: currSavedCounter,
         savedCounters: convertedSavedCounters
@@ -39,6 +36,11 @@ export function getStoredCounters() {
 
 //save currCounter data to local storage:
 //currCounter saved w/ each +/-, saved edit
+export function saveAllCounters(curr, arr) {
+    saveCurrCounter(curr);
+    saveCountersList(arr);
+}
+
 export function saveCurrCounter(counter) {
     localStorage.setItem("curr-counter", JSON.stringify(counter));
 }
@@ -47,9 +49,19 @@ export function saveCountersList(arr) {
     localStorage.setItem("saved-counters", JSON.stringify(arr));
 }
 
+export function saveNewCurr(newCounter) {
+    let storedObj = getStoredCounters();
+    if (storedObj.savedCounters) {
+        storedObj.savedCounters.unshift(storedObj.currCounter);
+    } else {
+        storedObj.savedCounters = [storedObj.currCounter];
+    }
+    saveAllCounters(newCounter, storedObj.savedCounters)
+}
+
 //user adds new counter
 //new counter is set as currCounter
-//oldCounter is added to start of savedArray
+//oldCounter is added to end of savedArray
 //localStorage is updated
 
 //switch counters:
@@ -57,13 +69,15 @@ export function saveCountersList(arr) {
 //prevCounter is unshift() to saved counters array (so shows at top)
 //return updated saved array
 //new/old counters are relative to being currCounter
+
+//open counter from list
 export function switchCounter(newCounter, oldCounter, savedCountersArray) {
     //remove old counter from array
     let i = savedCountersArray.find(c => c.name === newCounter.name)
     let newSavedCountersArray = splice(0, i).concat(splice(i, savedCountersArray.length));
 
     
-    //add new counter to start of array
+    //add new counter to END of array
     return newSavedCountersArray.unshift(oldCounter);
 }
 

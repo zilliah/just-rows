@@ -1,8 +1,9 @@
 //  functions that respond directly to user actions / input
 // mostly wrapper functions to streamline page and storage updates
 
-import { clearSavedCounters, updateRowCount } from "./page.js";
-import { deleteSavedCounters, saveCurrCounter } from "./storage.js";
+import { Counter } from "./counter.js";
+import { clearSavedCounters, showAllCounters, updateRowCount } from "./page.js";
+import { deleteSavedCounters, getStoredCounters, saveCurrCounter, saveNewCurr } from "./storage.js";
 
 // ----- within current counter -----
 export function plusRow(counter) {
@@ -48,6 +49,19 @@ export function removeRepeats(currCounter) {
 
 // ----- adding/removing counters -----
 
+//quick add default counter
+//move prev to storage
+export function addQuickCounter() {
+    console.log("adding a quick new counter");
+    let stored = getStoredCounters();
+    let name = stored.savedCounters ? `Counter ${stored.savedCounters.length + 2}` : "Counter 2";
+    const newCurr = new Counter(name);  //TODO validate unique name
+    saveNewCurr(newCurr);
+
+    //update on page
+    showAllCounters(getStoredCounters());
+}
+
 export function addCounter() {
     //show edit dialogue (leave currentCounter) -> page.js
 
@@ -58,7 +72,7 @@ export function addCounter() {
 
 
 //replaces curr counter
-//curr must be pushed into start of saved counters
+//curr must be unshifted into start of saved counters
 //page and storage both update
 export function expandCounter(button) {
     //find and extract selected counter from saved-counters
@@ -80,8 +94,11 @@ export function deleteOneSavedCounter(counter) {
 }
 
 export function deleteAllSavedCounters() {
-    //deleteSavedCounters -> storage.js
-    //clearSavedCounters -> page.js
-    deleteSavedCounters();
-    clearSavedCounters();
+    if (localStorage.getItem("saved-counters")) {
+        confirm("Delete all saved counters? This cannot be undone.");
+        deleteSavedCounters();
+        clearSavedCounters();
+    } else alert("No saved counters to delete.");
+
+
 }

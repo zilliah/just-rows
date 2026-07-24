@@ -1,6 +1,6 @@
 import { showCurrCounter, showSavedCounters } from "./page.js";
 import { getStoredCounters } from "./storage.js";
-import { closeEditor, deleteAllSavedCounters, minusRow, openEditor, plusRow, resetCounter } from "./user-actions.js";
+import { addQuickCounter, closeEditor, deleteAllSavedCounters, minusRow, openEditor, plusRow, resetCounter } from "./user-actions.js";
 
 const counterContainer = document.querySelector(".counters-container");
 
@@ -37,41 +37,19 @@ const editorNode = document.querySelector("#editor");
 const editBtnsNode = document.querySelector("#add-counter");
 
 //open the editor for both edit and create new (nothing else changes until saved)
-document.querySelector("#quick-add").addEventListener("click", e => {
-    //TODO - mostly in user-actions
-    // create new default, becomes curr
-    // prev curr gets pushed to saved array
-    //update on page
-});
+document.querySelector("#quick-add").addEventListener("click", addQuickCounter);
+
 
 //these can leave as is, nothing else happens with these until saved
 document.querySelector("#full-add").addEventListener("click", e => openEditor(editorNode, editBtnsNode));
 document.querySelector("#start-edit").addEventListener("click", e => openEditor(editorNode, editBtnsNode));
 
-// save stuff from input (this will be a lot more, but will probs have wrapper fxns in user-actions, etc)
+// save input
+// (this will be a lot more, but will probs have wrapper fxns in user-actions, etc)
+//will need to do different things depending on if it's
 document.querySelectorAll(".save").forEach(n => {
     n.addEventListener("click", e => {
         closeEditor(editorNode, editBtnsNode);
+        console.log("counter saved");
     });
 });
-
-
-// TMP TESTING
-// let testCurr = new Counter("counter 1", 7, 1, 4);
-// saveCurrCounter(testCurr);
-// showCurrCounter(testCurr);
-
-// let testArr = [];
-// for (let i = 0; i < 6; i++ ) {
-//     testArr.push(new Counter(`counter ${i + 2}`));
-// }
-// saveCountersList(testArr);
-// // console.log(testArr);
-
-// // console.log(getStorage());
-// showSavedCounters(testArr);
-
-// let testArr2 = [];
-// for (let i = 2; i < 8; i++ ) {
-//     testArr.push(new Counter(`bountery ${i}`));
-// }
