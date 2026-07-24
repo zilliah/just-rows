@@ -52,12 +52,16 @@ export function removeRepeats(currCounter) {
 }
 
 // ----- adding/removing counters -----
+const maxCounters = 500;
 
 //quick add default counter
 //move prev to storage
 export function addQuickCounter() {
-    console.log("adding a quick new counter");
     let stored = getStoredCounters();
+    if (stored.savedCounters && stored.savedCounters.length > maxCounters) {
+        alert("You have too many counters. Time to clean them up!");
+        return;
+    }
     let name = stored.savedCounters ? `Counter ${stored.savedCounters.length + 2}` : "Counter 2";
     const newCurr = new Counter(name);  //TODO validate unique name
     saveNewCurr(newCurr);
